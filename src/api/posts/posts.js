@@ -7,9 +7,10 @@ const postsCtrl = require('./posts.ctrl')
 
 posts.get('/',postsCtrl.list)
 posts.post('/',postsCtrl.write)
-posts.get('/:id',postsCtrl.read)
-posts.delete('/:id',postsCtrl.remove)
-posts.patch('/:id',postsCtrl.update)
+posts.get('/:id',postsCtrl.checkobjectid,postsCtrl.read)
+posts.delete('/:id',postsCtrl.checkobjectid,postsCtrl.remove)
+posts.patch('/:id',postsCtrl.checkobjectid,postsCtrl.update)
+
 
 
 module.exports = posts;

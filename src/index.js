@@ -5,6 +5,7 @@ const Router = require('koa-router');
 const api = require('./api');
 const bodyParser = require('koa-bodyparser');
 const mongoose = require('mongoose');
+const createFakeData = require('./createFakeData');
 //
 const app = new Koa();
 const router = new Router();
@@ -12,6 +13,7 @@ const { PORT, MONGO_URI } = process.env;
 //
 mongoose.connect(MONGO_URI).then(() => {
   console.log('mongodb 성공');
+  createFakeData();
 }).catch(e => console.error(e));
 //
 app.use(bodyParser());
