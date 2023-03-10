@@ -10,6 +10,7 @@ const mongoose = require('mongoose');
 const app = new Koa();
 const router = new Router();
 const { PORT, MONGO_URI } = process.env;
+const jwtMiddleware = require('./lib/jwtMiddleware')
 //
 mongoose.connect(MONGO_URI).then(() => {
   console.log('mongodb 성공');
@@ -17,6 +18,7 @@ mongoose.connect(MONGO_URI).then(() => {
 }).catch(e => console.error(e));
 //
 app.use(bodyParser());
+app.use(jwtMiddleware);
 router.use('/api', api.routes());
 //
 app.use(router.routes()).use(router.allowedMethods());
